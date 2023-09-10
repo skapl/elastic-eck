@@ -1,0 +1,79 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: kibana
+  namespace: monitoring
+spec:
+  version: 8.9.0
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
+  count: 1
+  elasticsearchRef:
+    name: elasticsearch
+  config:
+    telemetry.optIn: false
+    telemetry.allowChangingOptInStatus: false
+    xpack.fleet.agents.elasticsearch.hosts: ["http://elasticsearch-es-http.monitoring.svc:9200"]
+    xpack.fleet.agents.fleet_server.hosts: ["http://fleet-server-agent-http.monitoring.svc:8220"]
+    xpack.fleet.packages:
+    - name: system
+      version: latest
+    - name: elastic_agent
+      version: latest
+    - name: fleet_server
+      version: latest
+    - name: apm
+      version: latest
+    - name: kubernetes
+      version: latest
+    xpack.fleet.agentPolicies:
+    - name: eck-fleet-server
+      id: eck-fleet-server
+      namespace: default
+      monitoring_enabled:
+      - logs
+      - metrics
+      unenroll_timeout: 900
+      package_policies:
+      - name: fleet_server-1
+        id: fleet_server-1
+        package:
+          name: fleet_server
+    - name: eck-elastic-agent-apm
+      id: eck-elastic-agent-apm
+      namespace: default
+      monitoring_enabled:
+      - logs
+      - metrics
+      unenroll_timeout: 900
+      package_policies:
+      - name: system-1
+        package:
+          name: system
+      - name: apm-1
+        package:
+          name: apm
+        inputs:
+        - type: apm
+          enabled: true
+          vars:
+          - name: host
+            value: 0.0.0.0:8200
+          - name: auth.secret_token
+            value: apm-token
+    - name: eck-elastic-kubernetes-monitoring
+      id: eck-elastic-kubernetes-monitoring
+      namespace: eck_elastic_kubernetes_monitoring
+      monitoring_enabled:
+      - logs
+      - metrics
+      unenroll_timeout: 900
+      package_policies:
+      - name: system-1
+        package:
+          name: system
+      - package:
+          name: kubernetes
+        name: kubernetes-1
