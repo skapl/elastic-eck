@@ -42,8 +42,8 @@ spec:
         package:
           name: fleet_server
     - name: eck-elastic-agent-apm
-      id: eck-elastic-agent-apm
-      namespace: default
+      id: eck-elastic-agent-apm-kubernetes
+      namespace: eck_elastic_agent_apm_kubernetes
       monitoring_enabled:
       - logs
       - metrics
@@ -52,6 +52,9 @@ spec:
       - name: system-1
         package:
           name: system
+      - name: kubernetes-1
+        package:
+          name: kubernetes
       - name: apm-1
         package:
           name: apm
@@ -63,17 +66,3 @@ spec:
             value: 0.0.0.0:8200
           - name: auth.secret_token
             value: apm-token
-    - name: eck-elastic-kubernetes-monitoring
-      id: eck-elastic-kubernetes-monitoring
-      namespace: eck_elastic_kubernetes_monitoring
-      monitoring_enabled:
-      - logs
-      - metrics
-      unenroll_timeout: 900
-      package_policies:
-      - name: system-1
-        package:
-          name: system
-      - package:
-          name: kubernetes
-        name: kubernetes-1
