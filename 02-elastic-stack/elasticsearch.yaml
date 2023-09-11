@@ -21,9 +21,9 @@ spec:
         - name: elasticsearch
           resources:
             requests:
-              memory: 3Gi
+              memory: 4Gi
             limits:
-              memory: 3Gi
+              memory: 4Gi
     volumeClaimTemplates:
     - metadata:
         name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
