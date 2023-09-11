@@ -41,7 +41,7 @@ spec:
         id: fleet_server-1
         package:
           name: fleet_server
-    - name: eck-elastic-agent-apm
+    - name: eck-elastic-agent-apm-kubernetes
       id: eck-elastic-agent-apm-kubernetes
       namespace: eck_elastic_agent_apm_kubernetes
       monitoring_enabled:
