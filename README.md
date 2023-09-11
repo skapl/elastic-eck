@@ -31,3 +31,16 @@ Set `FLEET_ENROLLMENT_TOKEN` at `02-elastic-stack/elastic-agent-managed/ea-manag
 ```
 kubectl apply -f 02-elastic-stack/elastic-agent-managed
 ```
+
+### Cluster name in EKS, GKE, AKS
+
+Refer https://www.elastic.co/guide/en/fleet/current/running-on-eks-managed-by-fleet.html for more details
+
+Add the below processor 
+```
+- add_fields:
+    target: orchestrator.cluster
+    fields:
+      name: do-elastic
+      url: https://do-elastic
+```
