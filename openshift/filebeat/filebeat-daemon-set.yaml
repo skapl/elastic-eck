@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: filebeat
-  namespace: ${FILEBEAT_NAMESPACE}
+  namespace: monitoring
   labels:
     k8s-app: filebeat
 spec:
