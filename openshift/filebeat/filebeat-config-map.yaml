@@ -21,6 +21,7 @@ data:
             when:
               not:
                 equals:
+                  # should be the namespace where application is running
                   kubernetes.namespace: "test"
 
     # To enable hints based autodiscover, remove `filebeat.inputs` configuration and uncomment this:
