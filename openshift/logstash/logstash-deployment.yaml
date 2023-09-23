@@ -16,6 +16,9 @@ spec:
       containers:
       - name: logstash
         image: docker.elastic.co/logstash/logstash:8.9.2
+        ports:
+        - containerPort: 5044
+          protocol: TCP
         env:
         #- name: ELASTICSEARCH_HOST
         #  value: elasticsearch
@@ -46,14 +49,6 @@ spec:
           subPath: logstash.yml
         - name: pipeline-filebeat
           mountPath: /usr/share/logstash/pipeline/filebeat
-        #- name: data
-        #  mountPath: /usr/share/filebeat/data
-        #- name: varlibdockercontainers
-        #  mountPath: /var/lib/docker/containers
-        #  readOnly: true
-        #- name: varlog
-        #  mountPath: /var/log
-        #  readOnly: true
       volumes:
       - name: config
         configMap:
