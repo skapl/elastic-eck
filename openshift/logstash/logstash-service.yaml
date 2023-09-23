@@ -11,3 +11,4 @@ spec:
   - name: filebeat-ls
     port: 5044
     targetPort: 5044
+    protocol: TCP
