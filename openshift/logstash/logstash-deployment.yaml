@@ -39,7 +39,7 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /usr/pipelines.yml
-          readOnly: true
+          #readOnly: true
           subPath: pipelines.yml
         #- name: data
         #  mountPath: /usr/share/filebeat/data
@@ -52,7 +52,7 @@ spec:
       volumes:
       - name: config
         configMap:
-          defaultMode: 0640
+          #defaultMode: 0640
           name: logstash-config
       #- name: varlibdockercontainers
       #  hostPath:
