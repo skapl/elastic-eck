@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: logstash
-  namespace: monitoring
   labels:
     k8s-app: logstash
 spec:
@@ -36,11 +35,11 @@ spec:
         #  requests:
         #    cpu: 100m
         #    memory: 100Mi
-        #volumeMounts:
-        #- name: config
-        #  mountPath: /etc/filebeat.yml
-        #  readOnly: true
-        #  subPath: filebeat.yml
+        volumeMounts:
+        - name: logstash-pipelines-yaml
+          mountPath: /usr/share/logstash/config/pipelines.yml
+          readOnly: true
+          subPath: pipelines.yml
         #- name: data
         #  mountPath: /usr/share/filebeat/data
         #- name: varlibdockercontainers
@@ -49,11 +48,11 @@ spec:
         #- name: varlog
         #  mountPath: /var/log
         #  readOnly: true
-      #volumes:
-      #- name: config
-      #  configMap:
-      #    defaultMode: 0640
-      #    name: filebeat-config
+      volumes:
+      - name: logstash-pipelines-yaml
+        configMap:
+          defaultMode: 0640
+          name: logstash-pipelines-yaml
       #- name: varlibdockercontainers
       #  hostPath:
       #    path: /var/lib/docker/containers
