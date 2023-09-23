@@ -36,7 +36,7 @@ spec:
         #    cpu: 100m
         #    memory: 100Mi
         volumeMounts:
-        - name: config-pipelines.yml
+        - name: config-pipelines-yml
           mountPath: /usr/share/logstash/config/pipelines.yml
           readOnly: true
           subPath: pipelines.yml
@@ -49,7 +49,7 @@ spec:
         #  mountPath: /var/log
         #  readOnly: true
       volumes:
-      - name: config-pipelines.yml
+      - name: config-pipelines-yml
         configMap:
           defaultMode: 0640
           name: logstash-config
