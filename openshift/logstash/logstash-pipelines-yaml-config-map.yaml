@@ -5,6 +5,6 @@ metadata:
   labels:
     k8s-app: logstash
 data:
-  pipelines.yaml: |-
+  pipelines.yml: |-
     - pipeline.id: midas
       path.config: "/usr/share/logstash/pipeline"
