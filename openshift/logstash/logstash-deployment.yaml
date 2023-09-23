@@ -59,7 +59,7 @@ spec:
         configMap:
           defaultMode: 0640
           name: logstash-config
-      - name: pipeline-midas
+      - name: pipeline-filebeat
         configMap:
           defaultMode: 0640
           name: logstash-pipeline-filebeat
