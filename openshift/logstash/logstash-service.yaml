@@ -5,9 +5,9 @@ metadata:
   name: filebeat-logstash
 spec:
   selector:
-    k8s-app: filebeat-logstash
+    k8s-app: logstash
   clusterIP: None
   ports:
   - name: filebeat-ls
     port: 5044
-    targetPort: filebeat-ls
+    targetPort: 5044
