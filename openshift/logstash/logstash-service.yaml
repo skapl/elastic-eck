@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-  name: logstash-filebeat
+  name: filebeat-logstash
 spec:
   selector:
-    k8s-app: logstash
+    k8s-app: filebeat-logstash
   clusterIP: None
   ports:
-  - name: logstash-filebeat
+  - name: filebeat-ls
     port: 5044
-    targetPort: logstash-filebeat
+    targetPort: filebeat-ls
